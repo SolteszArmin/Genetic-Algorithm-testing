@@ -7,17 +7,17 @@ namespace GENETIC_ALGORITHM
 {
     class RandomLetter
     {
-
-        public char GetLetter()
+        Random r = new Random();
+        private readonly string legalCharacters = " öüóqwertzuiopőúasdfghjkléáűíyxcvbnm";
+        public char GetLetters()
         {
-             Random r = new Random();
+            char let = legalCharacters[r.Next(legalCharacters.Length)];
 
-            int num = r.Next(0, 26); 
-            char let = (char)('a' + num);
             if (r.Next(0, 101) > 50)
             {
-                let=char.ToUpper(let);
+                let = char.ToUpper(let);
             }
+            
 
             return let;
         }

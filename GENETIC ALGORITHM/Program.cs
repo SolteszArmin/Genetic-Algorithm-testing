@@ -18,9 +18,9 @@ namespace GENETIC_ALGORITHM
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Írjon be egy szó ékezet nélkül: ");
+            Console.WriteLine("Írjon be egy mondatot/szót speciális karakterek nélkül:");
             string word = Console.ReadLine();
-            Start(generateFirstPopulation(200, word),word);
+            Start(generateFirstPopulation(5000, word),word);
         }
         
         public static void Start(List<string> first_population,string word)
@@ -28,10 +28,10 @@ namespace GENETIC_ALGORITHM
             List<string> pop = first_population;
             while (true)
             {
-                pop = mutatePopulation(createChildren(selectFromPop(computePerfPopulation(pop, word), 50, 30), 6), 20);
+                pop = mutatePopulation(createChildren(selectFromPop(computePerfPopulation(pop, word), 500, 500), 50), 20);
                 string best = computePerfPopulation(pop, word)[0].Word;
                 Console.WriteLine(best);
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(500); // just to see what is going on 
             }
             
             
@@ -42,7 +42,7 @@ namespace GENETIC_ALGORITHM
             StringBuilder sb = new StringBuilder(word);
 
             int index_modification = r.Next(0,word.Length);
-            sb[index_modification]= rndL.GetLetter();
+            sb[index_modification]= rndL.GetLetters();
 
             return sb.ToString();
         }
@@ -137,7 +137,7 @@ namespace GENETIC_ALGORITHM
             string result="";
             for (int i = 0; i < lenght; i++)
             {
-                char letter = rndL.GetLetter();
+                char letter = rndL.GetLetters();
                 result += letter;
             }
             return result;
